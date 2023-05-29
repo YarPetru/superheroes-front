@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+
+  html {
+    background: linear-gradient(to right, #283043ac, #091e3fac),
+      url(images/bg-img.jpg) no-repeat center center fixed;
+    /* background-color: #091e3fac; */
+    /* -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover; */
+    background-size: cover;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 'sm';
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  h1 {
+    letter-spacing: 5px;
+
+    text-shadow: 1.5px 1.5px 0 #dedbe6, 0px 1.5px 0 #dedbe6, -1.5px -1.5px 0 #dedbe6,
+      -1.5px -1.5px 0 #dedbe6, -1.5px 1.5px 0 #dedbe6, 1.5px -1.5px 0 #dedbe6;
+
+    @apply text-xl text-accent;
+  }
+
+  h2 {
+    @apply text-lg text-black;
+  }
+
+  h3 {
+    letter-spacing: 2px;
+    @apply text-md text-black;
+  }
+
+  .text-main-body {
+    @apply text-sm text-black;
+  }
+
+  .bangers-font {
+    font-family: 'Bangers', sans-serif;
+  }
+
+  .circle-icon-wrapper {
+    @apply w-16 h-16 rounded-full flex items-center justify-center;
+  }
+
+  .arrow-button {
+    @apply w-9 h-9 flex items-center justify-center rounded-full;
+  }
+
+  .mask {
+    mask-image: linear-gradient(to left, transparent, #000 5%, #000 95%, transparent);
+  }
+}
