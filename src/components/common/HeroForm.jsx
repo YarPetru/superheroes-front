@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
+import PropTypes from 'prop-types';
+
 import BeatLoader from 'react-spinners/BeatLoader';
-import classNames from 'classnames';
 import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 
@@ -33,16 +34,20 @@ const validationSchema = yup.object().shape({
     .required('Password confirmation is a required field'),
 });
 
-const initialValues = {
-  email: '',
-  password: '',
-  repeatPassword: '',
-};
-
-const HeroForm = () => {
+const HeroForm = hero => {
   const [isPending, setIsPending] = useState();
+
+  const initialValues = {
+    nickname: hero ? hero.nickname : '',
+    real_name: hero ? hero.real_name : '',
+    origin_description: hero ? hero.origin_description : '',
+    catch_phrase: hero ? hero.catch_phrase : '',
+    images: hero ? hero.images : '',
+  };
+
   const handleSubmit = (values, actions) => {
     setIsPending(true);
+    actions.reset();
   };
 
   return (
@@ -140,6 +145,7 @@ const HeroForm = () => {
                     type="text"
                     placeholder="images"
                     autoComplete="off"
+                    // value
                   />
                   <ErrorMessage name="images" component="div" className="text-sm text-accent" />
                 </div>
@@ -163,6 +169,20 @@ const HeroForm = () => {
       </Container>
     </>
   );
+};
+
+const heroObj = {
+  id: PropTypes.string,
+  nickname: PropTypes.string,
+  real_name: PropTypes.string,
+  origin_description: PropTypes.string,
+  superpowers: PropTypes.string,
+  catch_phrase: PropTypes.string,
+  images: PropTypes.string,
+};
+
+HeroForm.propTypes = {
+  hero: PropTypes.shape(heroObj),
 };
 
 export default HeroForm;
