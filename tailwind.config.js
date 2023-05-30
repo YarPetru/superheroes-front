@@ -10,21 +10,26 @@ module.exports = {
       white: '#FFF',
       black: '#141213',
       accent: '#c42034',
+      'accent-shady': '#9d1a2a',
       blue: {
         main: '#283043',
+        light: '#535969',
       },
       grey: {
         main: '#dedbe6',
         80: '#dedbe6cc',
         90: '#dedbe6dd',
+        light: '#F2F2F4',
+        medium: '#939393',
+        dark: '#2F2F2E',
       },
       brown: '#3a1d18',
     },
     fontSize: {
       xs: ['14px', { lineHeight: '21px', fontWeight: '400' }],
       sm: ['16px', { lineHeight: '24px', fontWeight: '400' }],
-      md: ['24px', { lineHeight: '36px', fontWeight: '600' }],
-      lg: ['32px', { lineHeight: '48px', fontWeight: '600' }],
+      md: ['24px', { lineHeight: '36px', fontWeight: '500' }],
+      lg: ['32px', { lineHeight: '48px', fontWeight: '400' }],
       xl: ['56px', { lineHeight: '84px', fontWeight: '700' }],
     },
     boxShadow: {
@@ -33,7 +38,6 @@ module.exports = {
       cta: '0px 3px 55px rgba(3, 41, 75, 0.1)',
       'course-card': '4px 12px 24px rgba(13, 13, 13, 0.2)',
     },
-    fontFamily: {},
     container: {
       center: true,
     },

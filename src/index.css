@@ -33,7 +33,7 @@
 
   h1 {
     letter-spacing: 5px;
-
+    font-family: 'Bangers';
     text-shadow: 1.5px 1.5px 0 #dedbe6, 0px 1.5px 0 #dedbe6, -1.5px -1.5px 0 #dedbe6,
       -1.5px -1.5px 0 #dedbe6, -1.5px 1.5px 0 #dedbe6, 1.5px -1.5px 0 #dedbe6;
 
@@ -54,7 +54,13 @@
   }
 
   .bangers-font {
+    /* letter-spacing: 2px; */
     font-family: 'Bangers', sans-serif;
+  }
+
+  .bordered-font {
+    text-shadow: 1px 1px 0 #3a1d18, 0px 1px 0 #3a1d18, -1px -1px 0 #3a1d18, -1px -1px 0 #3a1d18,
+      -1px 1px 0 #3a1d18, 1px -1px 0 #3a1d18;
   }
 
   .circle-icon-wrapper {

@@ -1,12 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { heroesReducer } from './heroes';
 
+const heroesPersistConfig = {
+  key: 'heroes',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
-    heroes: heroesReducer,
+    heroes: persistReducer(heroesPersistConfig, heroesReducer),
+    // heroes: heroesReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+  // devTools: process.env.NODE_ENV !== 'production',
 });
 
-setupListeners(store.dispatch);
+export const persistor = persistStore(store);

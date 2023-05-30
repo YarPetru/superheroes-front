@@ -1,7 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import BeatLoader from 'react-spinners/BeatLoader';
 import { Layout } from 'components/layout';
 
@@ -22,11 +24,11 @@ const App = () => {
         }
       >
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
+          <Route path="/superheroes" element={<Layout />}>
+            <Route path="/superheroes" element={<HomePage />} />
             <Route path="/superheroes/:superheroId" element={<DetailsPage />} />
           </Route>
-          <Route path="/*" element={<Navigate to="/" />} />
+          <Route path="/*" element={<Navigate to="/superheroes" />} />
         </Routes>
       </Suspense>
       <ToastContainer theme="light" position="top-center" autoClose={5000} />
