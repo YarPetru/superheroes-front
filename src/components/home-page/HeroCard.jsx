@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -9,10 +7,11 @@ import { HeroForm, Modal, RoundedButton, Button } from 'components/common';
 import { removeHero } from 'store/heroes';
 import { useThunk } from 'hooks/use-thunk';
 
-const HeroCard = ({ hero }) => {
-  const [doRemoveHero, isLoading, error] = useThunk(removeHero);
+import defaultCover from 'images/default-cover.jpg';
 
-  const dispatch = useDispatch();
+const HeroCard = ({ hero }) => {
+  const [doRemoveHero] = useThunk(removeHero);
+
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -21,18 +20,13 @@ const HeroCard = ({ hero }) => {
     setIsDeleteModalOpen(false);
   };
 
-  // const onAddConfirmClick = () => {};
-
   return (
     <>
       <div className="group relative w-64 h-96 bg-grey-main rounded-2xl overflow-hidden ">
         <img
-          src={
-            !!hero.images
-              ? hero.images
-              : 'https://static.tvtropes.org/pmwiki/pub/images/superman_5.png'
-          }
+          src={!!hero.images ? hero.images : defaultCover}
           alt="#"
+          className="h-full w-full object-cover"
         />
         <div className="absolute top-0 w-full h-full p-6 flex flex-col justify-between items-center bg-grey-80 translate-y-[300px] text-center group-hover:translate-y-0 group-hover:bg-grey-90 transition-all">
           <h3 className="bangers-font text-md group-hover:scale-150 group-hover:text-accent transition-all">
@@ -55,10 +49,7 @@ const HeroCard = ({ hero }) => {
       </div>
 
       <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
-        <HeroForm
-          // onAddBtnClick={onAddConfirmClick}
-          onCancelBtnClick={() => setIsEditModalOpen(false)}
-        />
+        <HeroForm onCancelBtnClick={() => setIsEditModalOpen(false)} />
       </Modal>
 
       <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>

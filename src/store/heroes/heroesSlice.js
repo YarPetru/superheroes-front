@@ -31,8 +31,7 @@ const heroesSlice = createSlice({
     });
     builder.addCase(addHero.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data.unshift(action.payload);
-      // state.data = [action.payload, ...state.data];
+      state.data.push(action.payload);
     });
 
     builder.addCase(addHero.rejected, (state, action) => {
@@ -54,20 +53,17 @@ const heroesSlice = createSlice({
       state.error = action.error;
     });
 
-    // builder.addCase(editHero.pending, (state, _) => {
-    //   state.isLoading = true;
-    // });
-    // builder.addCase(editHero.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   // !!!!!!!!!!!!!!!!!!!!!!!!!!
-    //   // state.data = state.data.filter(hero => {
-    //   //   return hero._id !== action.payload.id;
-    //   // });
-    // });
-    // builder.addCase(editHero.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = action.error;
-    // });
+    builder.addCase(editHero.pending, (state, _) => {
+      state.isLoading = true;
+    });
+    builder.addCase(editHero.fulfilled, (state, action) => {
+      state.isLoading = false;
+      // state.data = action.payload;
+    });
+    builder.addCase(editHero.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
   },
 });
 
