@@ -55,4 +55,5 @@ This is Front-end part of application. To get all the features of the app please
 [backend part of the link](https://github.com/YarPetru/superheroes-back)
 
 The application allows you to work with Superheroes data using CRUD operations of the superhero
-model.
+model. As for the images аt this point it is possible to savе, remove and change images of a
+superhero as a url.

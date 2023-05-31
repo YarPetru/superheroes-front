@@ -75,7 +75,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
                   id="nickname"
                   name="nickname"
                   type="text"
-                  placeholder="nickname"
+                  placeholder="Enter the nickname"
                   autoComplete="off"
                 />
                 <ErrorMessage name="nickname" component="div" className="text-xs text-accent" />
@@ -90,7 +90,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
                   id="real_name"
                   name="real_name"
                   type="text"
-                  placeholder="real_name"
+                  placeholder="Enter the real name"
                   autoComplete="off"
                 />
                 <ErrorMessage name="real_name" component="div" className="text-xs text-accent" />
@@ -105,7 +105,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
                   id="origin_description"
                   name="origin_description"
                   type="text"
-                  placeholder="origin_description"
+                  placeholder="Enter a description"
                   autoComplete="off"
                 />
                 <ErrorMessage
@@ -124,7 +124,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
                   id="superpowers"
                   name="superpowers"
                   type="text"
-                  placeholder="superpowers"
+                  placeholder="Enter superpowers"
                   autoComplete="off"
                 />
                 <ErrorMessage name="superpowers" component="div" className="text-xs text-accent" />
@@ -139,7 +139,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
                   id="catch_phrase"
                   name="catch_phrase"
                   type="text"
-                  placeholder="catch_phrase"
+                  placeholder="Enter catch phrase"
                   autoComplete="off"
                 />
                 <ErrorMessage name="catch_phrase" component="div" className="text-xs text-accent" />
@@ -154,7 +154,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
                   id="images"
                   name="images"
                   type="text"
-                  placeholder="images"
+                  placeholder="Url starts with http..."
                   autoComplete="off"
                 />
                 <ErrorMessage name="images" component="div" className="text-xs text-accent" />
