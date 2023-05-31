@@ -12,13 +12,11 @@ const heroesPersistConfig = {
 export const store = configureStore({
   reducer: {
     heroes: persistReducer(heroesPersistConfig, heroesReducer),
-    // heroes: heroesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
-  // devTools: process.env.NODE_ENV !== 'production',
 });
 
 export const persistor = persistStore(store);

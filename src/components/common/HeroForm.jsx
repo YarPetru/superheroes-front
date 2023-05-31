@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import PropTypes from 'prop-types';
 
 import Button from './Button';
-import { addHero } from 'store/heroes';
+import { addHero, editHero } from 'store/heroes';
 import { useThunk } from 'hooks/use-thunk';
 import { fetchHeroes } from 'store/heroes';
 
@@ -27,15 +27,30 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
   };
 
   const [doAddHero, isAddLoading, addError] = useThunk(addHero);
+  const [doEditHero, isEditLoading, editError] = useThunk(editHero);
+
   const [doFetchHeroes] = useThunk(fetchHeroes);
 
-  const handleSubmit = (values, actions) => {
+  const onAddHero = (values, actions) => {
     doAddHero(values);
-    if (!addError) {
+    if (addError) {
+      return;
+    } else {
+      doFetchHeroes(1);
       actions.resetForm();
       onCancelBtnClick();
     }
-    doFetchHeroes(1);
+  };
+
+  const onChangeHero = (values, actions) => {
+    doEditHero(hero, values);
+    if (editError) {
+      return;
+    } else {
+      doFetchHeroes(1);
+      actions.resetForm();
+      onCancelBtnClick();
+    }
   };
 
   return (
@@ -43,7 +58,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={handleSubmit}
+        onSubmit={!!hero ? onChangeHero : onAddHero}
       >
         {({ isValid, touched }) => {
           return (
@@ -147,16 +162,18 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
 
               <div className="mt-10 flex items-center gap-10">
                 <Button
-                  btnText={!!hero ? 'Create' : 'Add new'}
+                  btnText={!!hero ? 'Edit' : 'Add new'}
                   type="submit"
                   option="redBtn"
                   disabled={
-                    (!touched.nickname &&
-                      !touched.real_name &&
-                      !touched.origin_description &&
-                      !touched.catch_phrase &&
-                      !touched.images) ||
-                    !isValid
+                    !!hero
+                      ? !isValid
+                      : (!touched.nickname &&
+                          !touched.real_name &&
+                          !touched.origin_description &&
+                          !touched.catch_phrase &&
+                          !touched.images) ||
+                        !isValid
                   }
                 />
                 <Button

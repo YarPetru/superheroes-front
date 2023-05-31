@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 
 import { BsTrash, BsPencil, BsInfoLg } from 'react-icons/bs';
 import { HeroForm, Modal, RoundedButton, Button } from 'components/common';
-import { removeHero } from 'store/heroes';
+import { removeHero, fetchHeroes } from 'store/heroes';
 import { useThunk } from 'hooks/use-thunk';
 
 import defaultCover from 'images/default-cover.jpg';
 
 const HeroCard = ({ hero }) => {
   const [doRemoveHero] = useThunk(removeHero);
+  const [doFetchHeroes] = useThunk(fetchHeroes);
 
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -18,6 +19,7 @@ const HeroCard = ({ hero }) => {
   const onDeleteConfirmClick = () => {
     doRemoveHero(hero);
     setIsDeleteModalOpen(false);
+    doFetchHeroes(1);
   };
 
   return (
@@ -49,7 +51,7 @@ const HeroCard = ({ hero }) => {
       </div>
 
       <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
-        <HeroForm onCancelBtnClick={() => setIsEditModalOpen(false)} />
+        <HeroForm hero={hero} onCancelBtnClick={() => setIsEditModalOpen(false)} />
       </Modal>
 
       <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
@@ -80,7 +82,6 @@ const heroObj = {
 
 HeroCard.propTypes = {
   hero: PropTypes.shape(heroObj).isRequired,
-  // onDelete: PropTypes.func.isRequired,
 };
 
 export default HeroCard;

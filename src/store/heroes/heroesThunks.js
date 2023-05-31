@@ -3,7 +3,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 
-// http://localhost:9999/api/
 
 axios.defaults.baseURL = 'http://localhost:9999/api/';
 
@@ -67,26 +66,23 @@ export const removeHero = createAsyncThunk('heroes/remove', async (hero, { rejec
   }
 });
 
-export const editHero = createAsyncThunk(
-  'heroes/edit',
-  async (heroId, hero, { rejectWithValue }) => {
-    try {
-      const response = await axios.put(`superheroes/${heroId}`, hero);
-      toast.success(`Product with ID ${heroId} has successfully deleted`, {
+export const editHero = createAsyncThunk('heroes/edit', async (hero, data, { rejectWithValue }) => {
+  try {
+    const response = await axios.put(`superheroes/${hero._id}`, data);
+    toast.success(`Hero with ID ${hero._id} has successfully deleted`, {
+      toastId: nanoid(),
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      toast.warn(`Something went wrong. Error: ${error.response?.data.message}`, {
         toastId: nanoid(),
       });
-      return response.data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.warn(`Something went wrong. Error: ${error.response?.data.message}`, {
-          toastId: nanoid(),
-        });
-      } else {
-        toast.warn(`Something went wrong. Error: ${error}`, {
-          toastId: nanoid(),
-        });
-      }
-      return rejectWithValue(error);
+    } else {
+      toast.warn(`Something went wrong. Error: ${error}`, {
+        toastId: nanoid(),
+      });
     }
+    return rejectWithValue(error);
   }
-);
+});
