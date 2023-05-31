@@ -2,19 +2,17 @@ import React, { useEffect, useState } from 'react';
 import HeroCard from './HeroCard';
 import { useSelector } from 'react-redux';
 import { fetchHeroes, getHeroes } from 'store/heroes';
-// import AddButton from './AddButton';
-import { Button, TextNotification } from 'components/common';
 import { useThunk } from 'hooks/use-thunk';
-import { Skeleton } from 'components/common';
+import { Button, TextNotification, Skeleton, Modal, HeroForm } from 'components/common';
 import AddButton from './AddButton';
 
 const HeroesList = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [doFetchHeroes, isLoadingHeroes, loadingHeroesError] = useThunk(fetchHeroes);
 
   const { data: heroes } = useSelector(getHeroes);
   const heroesOnPage = heroes.length;
-  console.log(heroesOnPage);
 
   useEffect(() => {
     doFetchHeroes(currentPage);
@@ -51,24 +49,31 @@ const HeroesList = () => {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      {renderedContent}
-      <div className="mt-16 flex items-center gap-10">
-        <Button
-          btnText="Prev page"
-          option="redBtn"
-          onClick={onPrevBtnClick}
-          disabled={currentPage === 1}
-        />
-        <AddButton onClick={() => console.log('onClick')} />
-        <Button
-          btnText="Next page"
-          option="blueBtn"
-          onClick={onNextBtnClick}
-          disabled={heroesOnPage < 5}
-        />
+    <>
+      <div className="flex flex-col items-center">
+        {renderedContent}
+        <div className="mt-16 flex items-center gap-10">
+          <Button
+            btnText="Prev page"
+            type="button"
+            option="redBtn"
+            onClick={onPrevBtnClick}
+            disabled={currentPage === 1}
+          />
+          <AddButton onClick={() => setIsModalOpen(true)} />
+          <Button
+            btnText="Next page"
+            type="button"
+            option="blueBtn"
+            onClick={onNextBtnClick}
+            disabled={heroesOnPage < 5}
+          />
+        </div>
       </div>
-    </div>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <HeroForm onCancelBtnClick={() => setIsModalOpen(false)} />
+      </Modal>
+    </>
   );
 };
 

@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Button = ({ btnText, className, option, disabled, onClick }) => {
+const Button = ({ btnText, className, option, type = 'button', disabled, onClick }) => {
   const classes = classNames(
     `px-8 py-3 w-48 rounded-md border-2 border-grey-main bangers-font bordered-font tracking-widest text-md shadow-cta text-grey-main hover:text-white transition-all
     disabled:text-grey-80 disabled:bg-grey-80 ${className}`,
     {
-      'bg-blue-light hover:bg-blue-main': option === 'redBtn',
-      'bg-accent hover:bg-accent-shady': option === 'blueBtn',
+      'bg-blue-light hover:bg-blue-main': option === 'blueBtn',
+      'bg-accent hover:bg-accent-shady': option === 'redBtn',
     }
   );
 
   return (
-    <button type="button" disabled={disabled} className={classes} onClick={onClick}>
+    <button type={type} disabled={disabled} className={classes} onClick={onClick}>
       {btnText}
     </button>
   );
@@ -21,8 +21,9 @@ const Button = ({ btnText, className, option, disabled, onClick }) => {
 
 Button.propTypes = {
   btnText: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['redBtn', 'blueBtn']).isRequired,
-  onClick: PropTypes.func.isRequired,
+  option: PropTypes.oneOf(['redBtn', 'blueBtn']).isRequired,
+  type: PropTypes.oneOf(['submit', 'button']).isRequired,
+  onClick: PropTypes.func,
   className: PropTypes.string,
   disabled: PropTypes.bool,
 };

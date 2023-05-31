@@ -21,6 +21,8 @@ const HeroCard = ({ hero }) => {
     setIsDeleteModalOpen(false);
   };
 
+  // const onAddConfirmClick = () => {};
+
   return (
     <>
       <div className="group relative w-64 h-96 bg-grey-main rounded-2xl overflow-hidden ">
@@ -52,25 +54,25 @@ const HeroCard = ({ hero }) => {
         </div>
       </div>
 
-      {isEditModalOpen && (
-        <Modal onClose={() => setIsEditModalOpen(false)}>
-          <HeroForm />
-          {/* <div className="mt-6 flex items-center gap-10">
-            <Button btnText="Add New" type="redBtn" />
-            <Button btnText="Cancel" type="blueBtn" onClick={() => setIsEditModalOpen(false)} />
-          </div> */}
-        </Modal>
-      )}
+      <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
+        <HeroForm
+          // onAddBtnClick={onAddConfirmClick}
+          onCancelBtnClick={() => setIsEditModalOpen(false)}
+        />
+      </Modal>
 
-      {isDeleteModalOpen && (
-        <Modal onClose={() => setIsDeleteModalOpen(false)}>
-          <h2>are you shure?</h2>
-          <div className="mt-6 flex items-center gap-10">
-            <Button btnText="Yes" option="redBtn" onClick={onDeleteConfirmClick} />
-            <Button btnText="Cancel" option="blueBtn" onClick={() => setIsDeleteModalOpen(false)} />
-          </div>
-        </Modal>
-      )}
+      <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
+        <h2>are you shure?</h2>
+        <div className="mt-6 flex items-center gap-10">
+          <Button type="button" btnText="Yes" option="redBtn" onClick={onDeleteConfirmClick} />
+          <Button
+            type="button"
+            btnText="Cancel"
+            option="blueBtn"
+            onClick={() => setIsDeleteModalOpen(false)}
+          />
+        </div>
+      </Modal>
     </>
   );
 };
