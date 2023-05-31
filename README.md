@@ -56,4 +56,6 @@ This is Front-end part of application. To get all the features of the app please
 
 The application allows you to work with Superheroes data using CRUD operations of the superhero
 model. As for the images аt this point it is possible to savе, remove and change images of a
-superhero as a url.
+superhero as a url. To delete a picture or create a superhero without a picture, simply leave the
+relevant form field blank. For superheroes without an added image, the default image will
+automatically be shown.

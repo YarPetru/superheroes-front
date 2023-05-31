@@ -13,7 +13,7 @@ const validationSchema = yup.object().shape({
   real_name: yup.string().required('Real name is a required field'),
   origin_description: yup.string().required('Description confirmation is a required field'),
   catch_phrase: yup.string().required('Catch phrase name is a required field'),
-  images: yup.string().url().required('Image name is a required field'),
+  images: yup.string().url(),
 });
 
 const HeroForm = ({ hero, onCancelBtnClick }) => {
