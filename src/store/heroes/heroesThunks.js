@@ -70,7 +70,7 @@ export const editHero = createAsyncThunk(
   async ({ hero, updatedHero }, { rejectWithValue }) => {
     try {
       const response = await axios.put(`superheroes/${hero._id}`, updatedHero);
-      toast.success(`Hero with ID ${hero._id} has successfully deleted`, {
+      toast.success(`Hero with ID ${hero._id} has successfully changed`, {
         toastId: nanoid(),
       });
       return response.data;

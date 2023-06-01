@@ -10,11 +10,7 @@ const DetailsPage = () => {
   const { data: heroes } = useSelector(getHeroes);
   const hero = heroes.find(hero => hero._id === superheroId);
 
-  return (
-    <>
-      <DetailedCard hero={hero} />
-    </>
-  );
+  return <>{hero && <DetailedCard hero={hero} />}</>;
 };
 
 export default DetailsPage;

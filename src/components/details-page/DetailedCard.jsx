@@ -97,7 +97,7 @@ const DetailedCard = ({ hero }) => {
 };
 
 const heroObj = {
-  id: PropTypes.string,
+  // _id: PropTypes.string,
   nickname: PropTypes.string,
   real_name: PropTypes.string,
   origin_description: PropTypes.string,
