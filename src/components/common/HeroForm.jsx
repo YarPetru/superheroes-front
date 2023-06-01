@@ -43,7 +43,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
   };
 
   const onChangeHero = (values, actions) => {
-    doEditHero(hero, values);
+    doEditHero({ hero, updatedHero: values });
     if (editError) {
       return;
     } else {

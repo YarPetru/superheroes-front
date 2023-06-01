@@ -51,7 +51,7 @@ const HeroCard = ({ hero }) => {
       </div>
 
       <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
-        <HeroForm hero={hero} onCancelBtnClick={() => setIsEditModalOpen(false)} />
+        {hero && <HeroForm hero={hero} onCancelBtnClick={() => setIsEditModalOpen(false)} />}
       </Modal>
 
       <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>

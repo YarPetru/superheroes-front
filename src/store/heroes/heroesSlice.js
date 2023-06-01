@@ -58,7 +58,7 @@ const heroesSlice = createSlice({
     builder.addCase(editHero.fulfilled, (state, action) => {
       state.isLoading = false;
       const elIndex = state.data.findIndex(hero => hero._id === action.payload._id);
-      state.data.splice(elIndex, action.payload);
+      state.data.splice(elIndex, 1, action.payload);
     });
     builder.addCase(editHero.rejected, (state, action) => {
       state.isLoading = false;
