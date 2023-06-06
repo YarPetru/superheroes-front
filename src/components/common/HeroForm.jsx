@@ -2,11 +2,12 @@ import React from 'react';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
-
+import { useSelector } from 'react-redux';
 import Button from './Button';
 import { addHero, editHero } from 'store/heroes';
 import { useThunk } from 'hooks/use-thunk';
-import { fetchHeroes } from 'store/heroes';
+
+import { fetchHeroes, getCurrentPage } from 'store/heroes';
 
 const validationSchema = yup.object().shape({
   nickname: yup.string().required('Nickname is a required field'),
@@ -30,13 +31,14 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
   const [doEditHero, isEditLoading, editError] = useThunk(editHero);
 
   const [doFetchHeroes] = useThunk(fetchHeroes);
+  const currentPage = useSelector(getCurrentPage);
 
   const onAddHero = (values, actions) => {
     doAddHero(values);
     if (addError) {
       return;
     } else {
-      doFetchHeroes(1);
+      doFetchHeroes(currentPage);
       actions.resetForm();
       onCancelBtnClick();
     }
@@ -47,7 +49,7 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
     if (editError) {
       return;
     } else {
-      doFetchHeroes(1);
+      doFetchHeroes(currentPage);
       actions.resetForm();
       onCancelBtnClick();
     }
@@ -162,7 +164,9 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
 
               <div className="mt-10 flex items-center gap-10">
                 <Button
-                  btnText={!!hero ? 'Edit' : 'Add new'}
+                  btnText={
+                    isAddLoading || isEditLoading ? 'pending...' : !!hero ? 'Edit' : 'Add new'
+                  }
                   type="submit"
                   option="redBtn"
                   disabled={

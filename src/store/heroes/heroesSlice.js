@@ -3,6 +3,7 @@ import { fetchHeroes, addHero, removeHero, editHero } from './heroesThunks';
 
 const initialState = {
   data: [],
+  currentPage: 1,
   isLoading: false,
   error: null,
 };
@@ -10,8 +11,16 @@ const initialState = {
 const heroesSlice = createSlice({
   name: 'heroes',
   initialState,
+  reducers: {
+    setHeroes: (state, action) => {
+      state.data = action.payload;
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers(builder) {
-    builder.addCase(fetchHeroes.pending, (state, _) => {
+    builder.addCase(fetchHeroes.pending, state => {
       state.isLoading = true;
     });
 
@@ -66,5 +75,7 @@ const heroesSlice = createSlice({
     });
   },
 });
+
+export const { setHeroes, setCurrentPage } = heroesSlice.actions;
 
 export default heroesSlice.reducer;

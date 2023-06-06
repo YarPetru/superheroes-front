@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import HeroCard from './HeroCard';
-import { useSelector } from 'react-redux';
-import { fetchHeroes, getHeroes } from 'store/heroes';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHeroes, getCurrentPage, getHeroes } from 'store/heroes';
 import { useThunk } from 'hooks/use-thunk';
 import { Button, TextNotification, Skeleton, Modal, HeroForm } from 'components/common';
 import AddButton from './AddButton';
+import HeroCard from './HeroCard';
+
+import { setCurrentPage } from 'store/heroes/heroesSlice';
 
 const HeroesList = () => {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   const [doFetchHeroes, isLoadingHeroes, loadingHeroesError] = useThunk(fetchHeroes);
 
   const { data: heroes } = useSelector(getHeroes);
+  const currentPage = useSelector(getCurrentPage);
   const heroesOnPage = heroes.length;
 
   useEffect(() => {
@@ -20,13 +23,15 @@ const HeroesList = () => {
 
   const onPrevBtnClick = () => {
     if (currentPage > 1) {
-      setCurrentPage(prev => prev - 1);
+      const newPage = currentPage - 1;
+      dispatch(setCurrentPage(newPage));
     }
   };
 
   const onNextBtnClick = () => {
     if (currentPage >= 1 && heroesOnPage === 5) {
-      setCurrentPage(prev => prev + 1);
+      const newPage = currentPage + 1;
+      dispatch(setCurrentPage(newPage));
     }
   };
 

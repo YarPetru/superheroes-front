@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
-import { BsPencil } from 'react-icons/bs';
+import { BsPencil, BsXCircleFill } from 'react-icons/bs';
 
 import { HeroForm, Modal, RoundedButton } from 'components/common';
 
@@ -20,7 +21,7 @@ const DetailedCard = ({ hero }) => {
 
   return (
     <section className="px-10">
-      <div className="w-full min-h-[600px] bg-grey-90 shadow-test-card flex gap-6">
+      <div className="relative w-full min-h-[600px] bg-grey-90 shadow-test-card flex gap-6">
         <img
           src={!!hero.images ? hero.images : defaultCover}
           alt={`${hero.nickname}`}
@@ -39,6 +40,7 @@ const DetailedCard = ({ hero }) => {
                 </div>
               </>
             )}
+
             {!!hero.real_name && (
               <>
                 <dt className={termClasses}>Real name</dt>
@@ -88,6 +90,9 @@ const DetailedCard = ({ hero }) => {
             )}
           </dl>
         </div>
+        <Link to="/" className="absolute top-4 right-4 text-blue-main hover:text-brown">
+          <BsXCircleFill />
+        </Link>
       </div>
       <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
         <HeroForm hero={hero} onCancelBtnClick={() => setIsEditModalOpen(false)} />
@@ -97,7 +102,6 @@ const DetailedCard = ({ hero }) => {
 };
 
 const heroObj = {
-  // _id: PropTypes.string,
   nickname: PropTypes.string,
   real_name: PropTypes.string,
   origin_description: PropTypes.string,

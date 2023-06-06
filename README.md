@@ -59,23 +59,26 @@ model.
 
 ### HomePage
 
-When the app starts, 5 superheroes are displayed, buttons to switch between pages and a button to
+When the app starts, 5 superheroes are displayed, buttons to switch between pages, and a button to
 add a hero. Pagination is implemented with 5 items per page.
 
-As for the images аt this point it is possible to savе, remove and change images of a superhero as a
-url. To delete a picture or create a superhero without a picture, simply leave the relevant form
+As for the images, at this point it is possible to save, remove, and change images of a superhero as
+a URL. To delete a picture or create a superhero without a picture, simply leave the relevant form
 field blank. For superheroes without an added image, the default image will automatically be shown.
 
-Also on this page you can immediately delete a Superhero. When you hover over the card, you will see
-a bin button.
+Also on this page, you can immediately delete a Superhero. When you hover over the card, you will
+see a bin button.
 
-Clicking on "i" will take you to the DetailsPage
+Clicking on the "i" will take you to the DetailsPage.
 
 ### DetailsPage
 
-Here you can also open the superhero edit form.
+Here, you can also open the superhero edit form.
 
 If an item of information is missing in the database, it will not appear on the card to avoid
-displaying blank fields
+displaying blank fields.
 
-To return to the HomePage, click on the title in the header.
+To return to the HomePage, click on the title in the header or Close button on the card.
+
+I hope these revisions and highlighted changes provide more clarity to your app description. If you
+have any further questions or need additional assistance, feel free to ask!

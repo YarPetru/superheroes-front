@@ -9,7 +9,6 @@ const DetailsPage = () => {
   const { superheroId } = useParams();
   const { data: heroes } = useSelector(getHeroes);
   const hero = heroes.find(hero => hero._id === superheroId);
-
   return <>{hero && <DetailedCard hero={hero} />}</>;
 };
 

@@ -55,9 +55,9 @@ const HeroCard = ({ hero }) => {
       </Modal>
 
       <Modal isOpen={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
-        <h2>are you shure?</h2>
+        <h2>Are you shure?</h2>
         <div className="mt-6 flex items-center gap-10">
-          <Button type="button" btnText="Yes" option="redBtn" onClick={onDeleteConfirmClick} />
+          <Button type="button" btnText="Delete" option="redBtn" onClick={onDeleteConfirmClick} />
           <Button
             type="button"
             btnText="Cancel"
