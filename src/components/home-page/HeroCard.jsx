@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import { BsTrash, BsPencil, BsInfoLg } from 'react-icons/bs';
 import { HeroForm, Modal, RoundedButton, Button } from 'components/common';
-import { removeHero, fetchHeroes } from 'store/heroes';
 import { useThunk } from 'hooks/use-thunk';
-
+import { fetchHeroes, getCurrentPage, getHeroes, removeHero } from 'store/heroes';
 import defaultCover from 'images/default-cover.jpg';
 
 const HeroCard = ({ hero }) => {
@@ -16,10 +15,13 @@ const HeroCard = ({ hero }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
+  const { data: heroes } = useSelector(getHeroes);
+  const currentPage = useSelector(getCurrentPage);
+
   const onDeleteConfirmClick = () => {
     doRemoveHero(hero);
     setIsDeleteModalOpen(false);
-    doFetchHeroes(1);
+    heroes.length === 0 ? doFetchHeroes(currentPage - 1) : doFetchHeroes(currentPage);
   };
 
   return (

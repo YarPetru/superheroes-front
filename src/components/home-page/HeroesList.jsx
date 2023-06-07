@@ -5,7 +5,6 @@ import { useThunk } from 'hooks/use-thunk';
 import { Button, TextNotification, Skeleton, Modal, HeroForm } from 'components/common';
 import AddButton from './AddButton';
 import HeroCard from './HeroCard';
-
 import { setCurrentPage } from 'store/heroes/heroesSlice';
 
 const HeroesList = () => {
@@ -23,15 +22,15 @@ const HeroesList = () => {
 
   const onPrevBtnClick = () => {
     if (currentPage > 1) {
-      const newPage = currentPage - 1;
-      dispatch(setCurrentPage(newPage));
+      const prevPage = currentPage - 1;
+      dispatch(setCurrentPage(prevPage));
     }
   };
 
   const onNextBtnClick = () => {
     if (currentPage >= 1 && heroesOnPage === 5) {
-      const newPage = currentPage + 1;
-      dispatch(setCurrentPage(newPage));
+      const nextPage = currentPage + 1;
+      dispatch(setCurrentPage(nextPage));
     }
   };
 

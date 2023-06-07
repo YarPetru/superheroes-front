@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Button from './Button';
-import { addHero, editHero } from 'store/heroes';
+import { addHero, editHero, getHeroes } from 'store/heroes';
 import { useThunk } from 'hooks/use-thunk';
 
 import { fetchHeroes, getCurrentPage } from 'store/heroes';
@@ -32,13 +32,14 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
 
   const [doFetchHeroes] = useThunk(fetchHeroes);
   const currentPage = useSelector(getCurrentPage);
+  const { data: heroes } = useSelector(getHeroes);
 
   const onAddHero = (values, actions) => {
     doAddHero(values);
     if (addError) {
       return;
     } else {
-      doFetchHeroes(currentPage);
+      heroes.length === 5 ? doFetchHeroes(currentPage + 1) : doFetchHeroes();
       actions.resetForm();
       onCancelBtnClick();
     }
