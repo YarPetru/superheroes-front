@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHeroes, getCurrentPage, getHeroes } from 'store/heroes';
-import { useThunk } from 'hooks/use-thunk';
+import { useThunk } from 'hooks';
 import { Button, TextNotification, Skeleton, Modal, HeroForm } from 'components/common';
 import AddButton from './AddButton';
 import HeroCard from './HeroCard';

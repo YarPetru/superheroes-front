@@ -1,92 +1,49 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { Link } from 'react-router-dom';
-
-import { BsPencil, BsXCircleFill } from 'react-icons/bs';
-
-import { HeroForm, Modal, RoundedButton } from 'components/common';
-
+import { BsXCircleFill } from 'react-icons/bs';
+import { HeroForm, Modal } from 'components/common';
 import defaultCover from 'images/default-cover.jpg';
+import HeroTrait from './HeroTrait';
 
 const DetailedCard = ({ hero }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const definitionWrapper = classNames('flex justify-between items-center gap-10');
-  const nameClasses = classNames('text-xl');
-  const termClasses = classNames('text-accent-shady mt-4 first-of-type:mt-0');
-  const descrClasses = classNames(
-    'text-md w-[80%] leading-tight flex justify-between items-center'
-  );
+  const openModal = () => setIsEditModalOpen(true);
+  const closeModal = () => setIsEditModalOpen(false);
 
   return (
     <section className="px-10">
-      <div className="relative w-full min-h-[600px] bg-grey-90 shadow-test-card flex gap-6">
+      <div className="relative w-full h-[720px] bg-grey-90 shadow-test-card flex gap-6 over">
         <img
           src={!!hero.images ? hero.images : defaultCover}
           alt={`${hero.nickname}`}
           className="w-1/3 object-cover"
         />
-        <div className="p-14">
-          <dl className="h-full">
+        <div className="p-14 w-full">
+          <dl className="h-full overflow-auto">
             {!!hero.nickname && (
-              <>
-                <dt className={termClasses}>Nickname</dt>
-                <div className={definitionWrapper}>
-                  <dd className={nameClasses}>{hero.nickname}</dd>
-                  <RoundedButton onClick={() => setIsEditModalOpen(true)}>
-                    <BsPencil />
-                  </RoundedButton>
-                </div>
-              </>
+              <HeroTrait term="Nickname" definition={hero.nickname} openModal={openModal} isName />
             )}
 
             {!!hero.real_name && (
-              <>
-                <dt className={termClasses}>Real name</dt>
-                <div className={definitionWrapper}>
-                  <dd className={descrClasses}>{hero.real_name}</dd>
-                  <RoundedButton onClick={() => setIsEditModalOpen(true)}>
-                    <BsPencil />
-                  </RoundedButton>
-                </div>
-              </>
+              <HeroTrait term="Real name" definition={hero.real_name} openModal={openModal} />
             )}
 
             {!!hero.origin_description && (
-              <>
-                <dt className={termClasses}>Description</dt>
-                <div className={definitionWrapper}>
-                  <dd className={descrClasses}>{hero.origin_description}</dd>
-                  <RoundedButton onClick={() => setIsEditModalOpen(true)}>
-                    <BsPencil />
-                  </RoundedButton>
-                </div>
-              </>
+              <HeroTrait
+                term="Description"
+                definition={hero.origin_description}
+                openModal={openModal}
+              />
             )}
 
             {!!hero.superpowers && (
-              <>
-                <dt className={termClasses}>Superpowers</dt>
-                <div className={definitionWrapper}>
-                  <dd className={descrClasses}>{hero.superpowers}</dd>
-                  <RoundedButton onClick={() => setIsEditModalOpen(true)}>
-                    <BsPencil />
-                  </RoundedButton>
-                </div>
-              </>
+              <HeroTrait term="Superpowers" definition={hero.superpowers} openModal={openModal} />
             )}
 
             {!!hero.catch_phrase && (
-              <>
-                <dt className={termClasses}>Catch phrase</dt>
-                <div className={definitionWrapper}>
-                  <dd className={descrClasses}>{hero.catch_phrase}</dd>
-                  <RoundedButton onClick={() => setIsEditModalOpen(true)}>
-                    <BsPencil />
-                  </RoundedButton>
-                </div>
-              </>
+              <HeroTrait term="Catch phrase" definition={hero.catch_phrase} openModal={openModal} />
             )}
           </dl>
         </div>
@@ -94,8 +51,8 @@ const DetailedCard = ({ hero }) => {
           <BsXCircleFill />
         </Link>
       </div>
-      <Modal isOpen={isEditModalOpen} onClose={() => setIsEditModalOpen(false)}>
-        <HeroForm hero={hero} onCancelBtnClick={() => setIsEditModalOpen(false)} />
+      <Modal isOpen={isEditModalOpen} onClose={closeModal}>
+        <HeroForm hero={hero} onCancelBtnClick={closeModal} />
       </Modal>
     </section>
   );

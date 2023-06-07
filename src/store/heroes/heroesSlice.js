@@ -39,7 +39,7 @@ const heroesSlice = createSlice({
     });
     builder.addCase(addHero.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data.push(action.payload);
+      state.data.length < 5 && state.data.push(action.payload);
     });
 
     builder.addCase(addHero.rejected, (state, action) => {
