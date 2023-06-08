@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchHeroes, addHero, removeHero, editHero } from './heroesThunks';
+import { fetchAllHeroes, fetchHeroes, addHero, removeHero, editHero } from './heroes-thunks';
 
 const initialState = {
   data: [],
+  allHeroes: [],
   currentPage: 1,
   isLoading: false,
   error: null,
@@ -20,6 +21,20 @@ const heroesSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(fetchAllHeroes.pending, state => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(fetchAllHeroes.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.allHeroes = action.payload;
+    });
+
+    builder.addCase(fetchAllHeroes.rejected, (state, action) => {
+      state.isLoading = false;
+      state.allHeroes = action.error;
+    });
+
     builder.addCase(fetchHeroes.pending, state => {
       state.isLoading = true;
     });

@@ -5,7 +5,7 @@ import HeroFormContent from './HeroFormContent';
 import { addHero, editHero, getHeroes } from 'store/heroes';
 import { useTrimFields, useThunk } from 'hooks';
 import { fetchHeroes, getCurrentPage } from 'store/heroes';
-import { setCurrentPage } from 'store/heroes/heroesSlice';
+import { setCurrentPage } from 'store/heroes/heroes-slice';
 
 const HeroForm = ({ hero, onCancelBtnClick }) => {
   const dispatch = useDispatch();

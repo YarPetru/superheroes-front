@@ -15,10 +15,6 @@
   html {
     background: linear-gradient(to right, #283043ac, #091e3fac),
       url(images/bg-img.jpg) no-repeat center center fixed;
-    /* background-color: #091e3fac; */
-    /* -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover; */
     background-size: cover;
     box-sizing: border-box;
     scroll-behavior: smooth;

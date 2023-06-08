@@ -7,7 +7,7 @@ import { HeroForm, Modal, RoundedButton, Button } from 'components/common';
 import { useThunk } from 'hooks';
 import { fetchHeroes, getCurrentPage, getHeroes, removeHero } from 'store/heroes';
 import defaultCover from 'images/default-cover.jpg';
-import { setCurrentPage } from 'store/heroes/heroesSlice';
+import { setCurrentPage } from 'store/heroes/heroes-slice';
 
 const HeroCard = ({ hero }) => {
   const dispatch = useDispatch();
@@ -27,8 +27,11 @@ const HeroCard = ({ hero }) => {
     doFetchHeroes(currentPage);
   };
 
-  const openModal = () => setIsEditModalOpen(true);
-  const closeModal = () => setIsEditModalOpen(false);
+  const openDeleteModal = () => setIsDeleteModalOpen(true);
+  const closeDeleteModal = () => setIsDeleteModalOpen(false);
+
+  const openEditModal = () => setIsEditModalOpen(true);
+  const closeEditModal = () => setIsEditModalOpen(true);
 
   return (
     <>
@@ -48,25 +51,25 @@ const HeroCard = ({ hero }) => {
                 <BsInfoLg />
               </RoundedButton>
             </Link>
-            <RoundedButton onClick={openModal}>
+            <RoundedButton onClick={openEditModal}>
               <BsPencil />
             </RoundedButton>
-            <RoundedButton onClick={openModal}>
+            <RoundedButton onClick={openDeleteModal}>
               <BsTrash />
             </RoundedButton>
           </div>
         </div>
       </div>
 
-      <Modal isOpen={isEditModalOpen} onClose={closeModal}>
-        {hero && <HeroForm hero={hero} onCancelBtnClick={closeModal} />}
+      <Modal isOpen={isEditModalOpen} onClose={closeEditModal}>
+        {hero && <HeroForm hero={hero} onCancelBtnClick={closeEditModal} />}
       </Modal>
 
-      <Modal isOpen={isDeleteModalOpen} onClose={closeModal}>
+      <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
         <h2>Are you shure?</h2>
         <div className="mt-6 flex items-center gap-10">
           <Button type="button" btnText="Delete" option="redBtn" onClick={onDeleteConfirmClick} />
-          <Button type="button" btnText="Cancel" option="blueBtn" onClick={closeModal} />
+          <Button type="button" btnText="Cancel" option="blueBtn" onClick={closeDeleteModal} />
         </div>
       </Modal>
     </>

@@ -5,6 +5,11 @@ import { nanoid } from 'nanoid';
 
 axios.defaults.baseURL = 'http://localhost:9999/api/';
 
+export const fetchAllHeroes = createAsyncThunk('heroes/fetch-all', async () => {
+  const response = await axios.get(`/superheroes`);
+  return response.data;
+});
+
 export const fetchHeroes = createAsyncThunk('heroes/fetch', async (page, { rejectWithValue }) => {
   try {
     const response = await axios.get(`/superheroes?page=${page}&limit=5`);
