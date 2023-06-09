@@ -7,7 +7,7 @@ import { HeroForm, Modal, RoundedButton, Button } from 'components/common';
 import { useThunk } from 'hooks';
 import { fetchHeroes, getCurrentPage, getHeroes, removeHero } from 'store/heroes';
 import defaultCover from 'images/default-cover.jpg';
-import { setCurrentPage } from 'store/heroes/heroes-slice';
+import { setCurrentPage, setCurrentHero } from 'store/heroes/heroes-slice';
 
 const HeroCard = ({ hero }) => {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const HeroCard = ({ hero }) => {
           </h3>
           <div className=" h-64 flex flex-col justify-around items-center">
             <Link to={`/superheroes/${hero._id}`}>
-              <RoundedButton>
+              <RoundedButton onClick={() => dispatch(setCurrentHero(hero))}>
                 <BsInfoLg />
               </RoundedButton>
             </Link>

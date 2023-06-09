@@ -11,9 +11,13 @@ module.exports = {
       black: '#141213',
       accent: '#c42034',
       'accent-shady': '#9d1a2a',
+      'accent-50': '#c4203480',
+
       blue: {
         main: '#283043',
         light: '#535969',
+        'main-50': '#28304380',
+        'light-50': '#53596980',
       },
       grey: {
         main: '#dedbe6',

@@ -5,6 +5,7 @@ const initialState = {
   data: [],
   allHeroes: [],
   currentPage: 1,
+  currentHero: null,
   isLoading: false,
   error: null,
 };
@@ -18,6 +19,9 @@ const heroesSlice = createSlice({
     },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
+    },
+    setCurrentHero: (state, action) => {
+      state.currentHero = action.payload;
     },
   },
   extraReducers(builder) {
@@ -91,6 +95,6 @@ const heroesSlice = createSlice({
   },
 });
 
-export const { setHeroes, setCurrentPage } = heroesSlice.actions;
+export const { setHeroes, setCurrentPage, setCurrentHero } = heroesSlice.actions;
 
 export default heroesSlice.reducer;

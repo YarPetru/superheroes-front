@@ -84,10 +84,12 @@ export const editHero = createAsyncThunk(
         toast.warn(`Something went wrong. Error: ${error.response?.data.message}`, {
           toastId: nanoid(),
         });
+        console.log(`Something went wrong. Error: ${error}`);
       } else {
         toast.warn(`Something went wrong. Error: ${error}`, {
           toastId: nanoid(),
         });
+        console.log(`Something went wrong. Error: ${error}`);
       }
       return rejectWithValue(error);
     }
