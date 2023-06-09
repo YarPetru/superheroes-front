@@ -63,11 +63,6 @@ When the app starts, 5 superheroes are displayed, buttons to switch between page
 add a hero. Also you can use buttons to jump on the first or tha last pages. Pagination is
 implemented with 5 items per page.
 
-As for the images, at this point it is possible to save, remove, and change images of a superhero as
-a URL. Images are store in array, so in DetaledCard you can see all of them by clicking on Carousel
-buttons. To create a superhero without a picture, simply leave the relevant form field blank. For
-superheroes without an added image, the default image will automatically be shown.
-
 Also on this page, you can immediately delete a Superhero. When you hover over the card, you will
 see a bin button.
 
@@ -79,5 +74,21 @@ Here, you can also open the superhero edit form by clicking on any button with p
 
 If an item of information is missing in the database, it will not appear on the card to avoid
 displaying blank fields.
+
+Regarding images, the application allows adding, deleting, and setting a Main image for a superhero
+from the available ones in the database.
+
+To add an image, you can do so through editing the superhero's information. In the opened form,
+without modifying other fields (if not necessary), simply add the image URL and click the Edit
+button. The images are stored in an array (each image represented as a URL).
+
+In the DetailedCard, you can view all the images by scrolling through the Carousel component (if the
+hero has more than one image available). If the hero has only one image, the Carousel control
+buttons are disabled. However, once you add more images, the buttons will appear.
+
+Additionally, in the DetailedCard, you can delete current image or set it as the Main image. To do
+so, click the Chevron button at the top of the image, which opens a backdrop with the "Set as Main"
+and "Delete" buttons. By clicking on either of them, you can delete or set the current image as the
+Main one. For superheroes without an added image, a default image will be automatically shown.
 
 To return to the Heroes List, click on the title in the header or Close button on the card.
