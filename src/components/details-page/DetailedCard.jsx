@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { BsXCircleFill } from 'react-icons/bs';
 import { HeroForm, Modal } from 'components/common';
 import defaultCover from 'images/default-cover.jpg';
 import HeroTrait from './HeroTrait';
+import Carousel from './Carousel';
+import { CAROUSEL_WINDOW_WIDTH, DETAILED_CARD_HEIGHT } from 'ustils/constants';
 
 const DetailedCard = ({ hero }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -12,15 +15,21 @@ const DetailedCard = ({ hero }) => {
   const openModal = () => setIsEditModalOpen(true);
   const closeModal = () => setIsEditModalOpen(false);
 
+  const wrapperCartClasses = classNames(
+    `relative w-full h-[${DETAILED_CARD_HEIGHT}px] bg-grey-90 shadow-test-card flex gap-6`
+  );
+  const defaultimgClasses = classNames(`w-[${CAROUSEL_WINDOW_WIDTH}px] object-cover`);
+
   return (
     <section className="px-10">
-      <div className="relative w-full h-[720px] bg-grey-90 shadow-test-card flex gap-6 over">
-        <img
-          src={!!hero.images ? hero.images : defaultCover}
-          alt={`${hero.nickname}`}
-          className="w-1/3 object-cover"
-        />
-        <div className="p-14 w-full">
+      <div className={wrapperCartClasses}>
+        {hero.images.length > 0 ? (
+          <Carousel images={hero.images} />
+        ) : (
+          <img src={defaultCover} alt={`${hero.nickname}`} className={defaultimgClasses} />
+        )}
+
+        <div className="p-14 w-[850px] h-[720px]">
           <dl className="h-full overflow-auto">
             {!!hero.nickname && (
               <HeroTrait term="Nickname" definition={hero.nickname} openModal={openModal} isName />
@@ -64,7 +73,7 @@ const heroObj = {
   origin_description: PropTypes.string,
   superpowers: PropTypes.string,
   catch_phrase: PropTypes.string,
-  images: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.string),
 };
 
 DetailedCard.propTypes = {

@@ -27,7 +27,7 @@ const HeroFormContent = ({
     origin_description: !!hero ? hero.origin_description : '',
     superpowers: !!hero ? hero.superpowers : '',
     catch_phrase: !!hero ? hero.catch_phrase : '',
-    images: !!hero ? hero.images : '',
+    images: '',
   };
 
   return (
@@ -123,7 +123,7 @@ const HeroFormContent = ({
 
             <div className="relative flex flex-col mb-4">
               <label htmlFor="images" className="mb-2">
-                Image <span className="text-accent">*</span>
+                Add new image
               </label>
               <Field
                 className="relative px-3 py-2 font-medium text-black outline-none rounded"
@@ -168,7 +168,7 @@ const heroObj = {
   origin_description: PropTypes.string,
   superpowers: PropTypes.string,
   catch_phrase: PropTypes.string,
-  images: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.string),
 };
 
 HeroFormContent.propTypes = {

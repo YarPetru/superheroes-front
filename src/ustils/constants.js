@@ -1,0 +1,2 @@
+export const CAROUSEL_WINDOW_WIDTH = 450;
+export const DETAILED_CARD_HEIGHT = 720;

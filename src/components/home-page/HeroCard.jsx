@@ -31,13 +31,13 @@ const HeroCard = ({ hero }) => {
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
 
   const openEditModal = () => setIsEditModalOpen(true);
-  const closeEditModal = () => setIsEditModalOpen(true);
+  const closeEditModal = () => setIsEditModalOpen(false);
 
   return (
     <>
       <div className="group relative w-64 h-96 bg-grey-main rounded-2xl overflow-hidden ">
         <img
-          src={!!hero.images ? hero.images : defaultCover}
+          src={!!hero.images.length > 0 ? hero.images[0] : defaultCover}
           alt="#"
           className="h-full w-full object-cover"
         />
@@ -83,7 +83,7 @@ const heroObj = {
   origin_description: PropTypes.string,
   superpowers: PropTypes.string,
   catch_phrase: PropTypes.string,
-  images: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.string),
 };
 
 HeroCard.propTypes = {

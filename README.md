@@ -60,11 +60,13 @@ model.
 ### HomePage
 
 When the app starts, 5 superheroes are displayed, buttons to switch between pages, and a button to
-add a hero. Pagination is implemented with 5 items per page.
+add a hero. Also you can use buttons to jump on the first or tha last pages. Pagination is
+implemented with 5 items per page.
 
 As for the images, at this point it is possible to save, remove, and change images of a superhero as
-a URL. To delete a picture or create a superhero without a picture, simply leave the relevant form
-field blank. For superheroes without an added image, the default image will automatically be shown.
+a URL. Images are store in array, so in DetaledCard you can see all of them by clicking on Carousel
+buttons. To create a superhero without a picture, simply leave the relevant form field blank. For
+superheroes without an added image, the default image will automatically be shown.
 
 Also on this page, you can immediately delete a Superhero. When you hover over the card, you will
 see a bin button.

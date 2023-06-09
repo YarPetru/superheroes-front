@@ -19,8 +19,21 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
   const { data: heroes } = useSelector(getHeroes);
 
   const onAddHero = async (values, actions) => {
+    const newImage = values.images.trim();
     const trimmedValues = trimFields(values);
-    await doAddHero(trimmedValues);
+    let newHeroData;
+    if (newImage !== '') {
+      newHeroData = {
+        ...trimmedValues,
+        images: [newImage],
+      };
+    } else if (newImage === '') {
+      newHeroData = {
+        ...trimmedValues,
+        images: [],
+      };
+    }
+    await doAddHero(newHeroData);
     if (addError) {
       return;
     } else {
@@ -32,8 +45,21 @@ const HeroForm = ({ hero, onCancelBtnClick }) => {
   };
 
   const onChangeHero = (values, actions) => {
+    const newImage = values.images;
     const trimmedValues = trimFields(values);
-    doEditHero({ hero, updatedHero: trimmedValues });
+    let updatedHeroData;
+    if (newImage !== '') {
+      updatedHeroData = {
+        ...trimmedValues,
+        images: [...hero.images, newImage],
+      };
+    } else if (newImage === '') {
+      updatedHeroData = {
+        ...trimmedValues,
+        images: [...hero.images],
+      };
+    }
+    doEditHero({ hero, updatedHero: updatedHeroData });
     if (editError) {
       return;
     } else {
@@ -62,7 +88,7 @@ const heroObj = {
   origin_description: PropTypes.string,
   superpowers: PropTypes.string,
   catch_phrase: PropTypes.string,
-  images: PropTypes.string,
+  images: PropTypes.arrayOf(PropTypes.string),
 };
 
 HeroForm.propTypes = {
