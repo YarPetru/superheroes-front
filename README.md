@@ -75,12 +75,9 @@ Clicking on the "i" will take you to the DetailsPage.
 
 ### DetailsPage
 
-Here, you can also open the superhero edit form.
+Here, you can also open the superhero edit form by clicking on any button with pencil icon.
 
 If an item of information is missing in the database, it will not appear on the card to avoid
 displaying blank fields.
 
-To return to the HomePage, click on the title in the header or Close button on the card.
-
-I hope these revisions and highlighted changes provide more clarity to your app description. If you
-have any further questions or need additional assistance, feel free to ask!
+To return to the Heroes List, click on the title in the header or Close button on the card.
