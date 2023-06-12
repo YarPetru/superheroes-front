@@ -13,6 +13,12 @@ Installs all the dependencies
 Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it
 in the browser.
 
+## IMPORTANT
+
+This is the Front-end part of application. To get all the features of the app please make sure that
+you run the backend part. You can find it by
+[the link](https://github.com/YarPetru/superheroes-back)
+
 ---
 
 ## Main project stack
