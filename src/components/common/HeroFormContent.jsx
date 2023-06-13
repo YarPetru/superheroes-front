@@ -3,7 +3,7 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 
-import Button from './Button';
+import Button from './MainButton';
 
 const validationSchema = yup.object().shape({
   nickname: yup.string().required('Nickname is a required field'),

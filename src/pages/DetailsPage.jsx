@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getHeroes } from 'store/heroes';
 
-import { DetailedCard } from 'components/details-page';
+import { DetailedCard } from 'components/details';
 
 const DetailsPage = () => {
   const { superheroId } = useParams();

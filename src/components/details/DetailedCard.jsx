@@ -7,7 +7,7 @@ import { HeroForm, Modal } from 'components/common';
 import defaultCover from 'images/default-cover.jpg';
 import HeroTrait from './HeroTrait';
 import Carousel from './Carousel';
-import { CAROUSEL_WINDOW_WIDTH, DETAILED_CARD_HEIGHT } from 'ustils/constants';
+import { CAROUSEL_WINDOW_WIDTH, DETAILED_CARD_HEIGHT } from 'utils/constants';
 
 const DetailedCard = ({ hero }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);

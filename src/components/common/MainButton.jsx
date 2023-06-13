@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const Button = ({ btnText, className, option, type = 'button', disabled, onClick }) => {
+const MainButton = ({ btnText, className, option, type = 'button', disabled, onClick }) => {
   const classes = classNames(
     `px-8 py-3 w-48 rounded-md border-2 border-grey-main bangers-font bordered-font tracking-widest text-md shadow-cta text-grey-main hover:text-white transition-all
     disabled:text-grey-80 disabled:bg-grey-80 ${className}`,
@@ -19,7 +19,7 @@ const Button = ({ btnText, className, option, type = 'button', disabled, onClick
   );
 };
 
-Button.propTypes = {
+MainButton.propTypes = {
   btnText: PropTypes.string.isRequired,
   option: PropTypes.oneOf(['redBtn', 'blueBtn']).isRequired,
   type: PropTypes.oneOf(['submit', 'button']).isRequired,
@@ -28,4 +28,4 @@ Button.propTypes = {
   disabled: PropTypes.bool,
 };
 
-export default Button;
+export default MainButton;

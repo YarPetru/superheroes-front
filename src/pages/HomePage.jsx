@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeroesList } from 'components/home-page';
+import { HeroesList } from 'components/home';
 
 const HomePage = () => {
   return <HeroesList />;

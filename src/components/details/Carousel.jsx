@@ -12,7 +12,7 @@ import {
 } from 'react-icons/bs';
 import { useThunk } from 'hooks';
 import { RoundedButton } from 'components/common';
-import { CAROUSEL_WINDOW_WIDTH, DETAILED_CARD_HEIGHT } from 'ustils/constants';
+import { CAROUSEL_WINDOW_WIDTH, DETAILED_CARD_HEIGHT } from 'utils/constants';
 import { getCurrentHero, editHero } from 'store/heroes';
 
 const Carousel = ({ images }) => {
